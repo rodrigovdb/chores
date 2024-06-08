@@ -1,0 +1,17 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-factory_bot
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'db/seeds.rb'
+
+Style/Documentation:
+  Enabled: no
+
+Layout/LineLength:
+  Exclude:
+    - 'config/initializers/devise.rb'
