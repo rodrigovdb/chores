@@ -11,15 +11,13 @@
   </head>
 
   <body>
-    <div id="layout">
-      <section id="content">
-        <%= render 'menu' if current_user %>
-        <%= yield %>
-      </section>
+    <%= render 'menu' if current_user %>
+    <section id="content">
+      <%= yield %>
+    </section>
 
-      <footer>
-        <p>by <a href="https://github.com/rodrigovdb" target="_BLANK">@rodrigovdb</a></p>
-      </footer>
-    </div>
+    <footer>
+      <p>by <a href="https://github.com/rodrigovdb" target="_BLANK">@rodrigovdb</a></p>
+    </footer>
   </body>
 </html>
