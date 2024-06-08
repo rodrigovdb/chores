@@ -1,0 +1,12 @@
+<h1>Chores</h1>
+
+<div id="chores">
+  <% @chores.each do |chore| %>
+    <%= render chore %>
+    <p>
+    <%= link_to "Edit this chore", edit_chore_path(chore) %> 
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New chore", new_chore_path %>

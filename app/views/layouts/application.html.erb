@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Chores</title>
+    <title>Appraiser</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="layout">
+      <%= render 'menu' if current_user %>
+
+      <section id="content">
+        <%= yield %>
+      </section>
+
+      <footer>
+        <p>by <a href="https://github.com/rodrigovdb" target="_BLANK">@rodrigovdb</a></p>
+      </footer>
+    </div>
   </body>
 </html>

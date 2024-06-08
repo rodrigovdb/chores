@@ -1,0 +1,14 @@
+<section id="menu">
+  <div id="menu-logo">
+    <%= link_to root_path do %>
+      <%= t('home') %>
+      <%# <%= image_tag('logo.png', alt: 'Logo') %1> %>
+    <% end %>
+  </div>
+
+  <div id="menu-actions">
+    <%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo: false } } do %>
+      <%= t('app.logout') %>
+    <% end %>
+  </div>
+</section>
