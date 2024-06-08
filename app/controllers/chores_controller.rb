@@ -60,7 +60,7 @@ class ChoresController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_chore
-      @chore = Chore.find(params[:id])
+      @chore = params[:id].is_a?(Integer) ? Chore.find(params[:id]) : Chore.find_by(slug: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
