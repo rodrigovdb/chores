@@ -1,22 +1,23 @@
-<%= form_with(model: daily_chore) do |form| %>
-  <% if daily_chore.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(daily_chore.errors.count, "error") %> prohibited this daily_chore from being saved:</h2>
 
-      <ul>
-        <% daily_chore.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <div>
-    <%= form.label :chore, style: "display: block" %>
-    <%= form.collection_select :chore_id, Chore.order(:name), :id, :name %>
+<div class="card my-2">
+  <div class="card-body">
+    <%= form_with(model: daily_chore) do |form| %>
+      <% if daily_chore.errors.any? %>
+        <%= render 'errors', object: daily_chore %>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :chore, class: 'form-label' %>
+        <%= form.collection_select :chore_id, Chore.order(:name), :id, :name, html_options: { class: 'form-select' } %>
+      </div>
+
+      <%= button_tag submit: true, class: 'btn btn-outline-dark' do %>
+    Registrar
+      <% end %>
+      <%= link_to root_path, class: 'btn btn-outline-secondary' do %>
+        <%= t('app.cancel') %>
+      <% end %>
+    <% end %>
   </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

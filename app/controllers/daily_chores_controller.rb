@@ -27,6 +27,7 @@ class DailyChoresController < ApplicationController
       if @daily_chore.save
         format.html { redirect_to daily_chore_url(@daily_chore), t('controllers.daily_chores.create') }
         format.json { render :show, status: :created, location: @daily_chore }
+        format.turbo_stream
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @daily_chore.errors, status: :unprocessable_entity }

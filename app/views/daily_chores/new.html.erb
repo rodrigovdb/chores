@@ -1,9 +1,3 @@
-<h1>New daily chore</h1>
-
-<%= render "form", daily_chore: @daily_chore %>
-
-<br>
-
-<div>
-  <%= link_to "Back to daily chores", daily_chores_path %>
-</div>
+<%= turbo_frame_tag @daily_chore do %>
+  <%= render "form", daily_chore: @daily_chore %>
+<% end %>

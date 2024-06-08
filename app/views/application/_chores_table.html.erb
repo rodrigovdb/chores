@@ -1,0 +1,27 @@
+<table class="chores-table" width=100%>
+  <thead>
+    <tr>
+      <th></th>
+      <% week.each do |day| %>
+        <th>
+          <div><%= l(day) %></div>
+          <div><%= l(day, format: :week_day).titleize %></div>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% chores.each do |chore| %>
+      <tr>
+        <td><%= chore.name %></td>
+
+        <% week.each do |day| %>
+          <td>
+            <%= icon('fa-solid', daily_chores.for_chore(chore).for_day(day).any? ? 'check' : 'xmark')%>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

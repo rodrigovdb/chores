@@ -1,0 +1,2 @@
+<%= turbo_stream.update "chores-table", partial: "chores_table", chores: Chore.all, daily_chores: DailyChore.for_this_week, week: Date.current.all_week %>
+<%= turbo_stream.update DailyChore.new, "" %>

@@ -60,4 +60,20 @@ pt-BR:
     chores: 'Tarefas Diárias'
     new_daily_chore: 'Registrar Tarefa'
     week: 'Semana'
-
+    cancel: 'Cancelar'
+  activerecord:
+    models:
+      chore:
+        one: Tarefa
+        other: Tarefas
+      daily_chore:
+        one: Tarefa Diária
+        other: Tarefas Diárias
+    attributes:
+      chore:
+        name: "Nome"
+        slug: "Slug"
+      daily_chore:
+        chore: "Tarefa"
+        date: "Data"
+        done: "Feito"

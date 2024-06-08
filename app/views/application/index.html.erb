@@ -1,46 +1,12 @@
 <h1><%= t('app.week') %></h1>
 
-<table class="chores-table" width=100%>
-  <thead>
-    <tr>
-      <th></th>
-      <% @week.each do |day| %>
-        <th>
-          <div><%= l(day) %></div>
-          <div><%= l(day, format: :week_day).titleize %></div>
-        </th>
-      <% end %>
-    </tr>
-  </thead>
+<%= link_to new_daily_chore_path, data: { turbo_frame: dom_id(DailyChore.new) }, class: 'btn mb-3 btn-outline-dark' do %>
+  <i class="fa fa-plus"></i>
+  <%= t('app.new_daily_chore') %>
+<% end %>
 
-  <tbody>
-    <% @chores.each do |chore| %>
-      <tr>
-        <td><%= chore.name %></td>
+<%= turbo_frame_tag DailyChore.new %>
 
-        <% @week.each do |day| %>
-          <td>
-            <%= icon('fa-solid', @daily_chores.for_chore(chore).for_day(day).any? ? 'check' : 'xmark')%>
-          <!-- <%=  %> -->
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<!--
-<div class="chores-week">
-  <div class="chores-week-header">
-    <div class="chores-week-header-day"></div>
-    <div class="chores-week-header-chores">
-      <% @week.each do |day| %>
-        <div class="chores-week-header-chore">
-          <div><%= l(day) %></div>
-          <div><%= l(day, format: :week_day).titleize %></div>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
--->
+<%= turbo_frame_tag 'chores-table' do %>
+  <%= render 'chores_table', chores: @chores, daily_chores: @daily_chores, week: @week %>
+<% end %>
