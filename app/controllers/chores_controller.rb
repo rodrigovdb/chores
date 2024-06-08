@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ChoresController < ApplicationController
-  before_action :set_chore, only: %i[ show edit update destroy ]
+  before_action :set_chore, only: %i[show edit update destroy]
 
   # GET /chores or /chores.json
   def index
@@ -7,8 +9,7 @@ class ChoresController < ApplicationController
   end
 
   # GET /chores/1 or /chores/1.json
-  def show
-  end
+  def show; end
 
   # GET /chores/new
   def new
@@ -16,8 +17,7 @@ class ChoresController < ApplicationController
   end
 
   # GET /chores/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /chores or /chores.json
   def create
@@ -25,7 +25,7 @@ class ChoresController < ApplicationController
 
     respond_to do |format|
       if @chore.save
-        format.html { redirect_to chores_url, notice: "Chore was successfully created." }
+        format.html { redirect_to chores_url, notice: 'Chore was successfully created.' }
         format.json { render :show, status: :created, location: @chore }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class ChoresController < ApplicationController
   def update
     respond_to do |format|
       if @chore.update(chore_params)
-        format.html { redirect_to chores_url, notice: "Chore was successfully updated." }
+        format.html { redirect_to chores_url, notice: 'Chore was successfully updated.' }
         format.json { render :show, status: :ok, location: @chore }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class ChoresController < ApplicationController
     @chore.destroy
 
     respond_to do |format|
-      format.html { redirect_to chores_url, notice: "Chore was successfully destroyed." }
+      format.html { redirect_to chores_url, notice: 'Chore was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_chore
-      @chore = params[:id].is_a?(Integer) ? Chore.find(params[:id]) : Chore.find_by(slug: params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def chore_params
-      params.require(:chore).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_chore
+    @chore = params[:id].is_a?(Integer) ? Chore.find(params[:id]) : Chore.find_by(slug: params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def chore_params
+    params.require(:chore).permit(:name)
+  end
 end

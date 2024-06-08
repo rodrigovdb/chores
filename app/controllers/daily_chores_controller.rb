@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DailyChoresController < ApplicationController
-  before_action :set_daily_chore, only: %i[ show edit update destroy ]
+  before_action :set_daily_chore, only: %i[show edit update destroy]
 
   # GET /daily_chores or /daily_chores.json
   def index
@@ -7,8 +9,7 @@ class DailyChoresController < ApplicationController
   end
 
   # GET /daily_chores/1 or /daily_chores/1.json
-  def show
-  end
+  def show; end
 
   # GET /daily_chores/new
   def new
@@ -16,8 +17,7 @@ class DailyChoresController < ApplicationController
   end
 
   # GET /daily_chores/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /daily_chores or /daily_chores.json
   def create
@@ -25,7 +25,7 @@ class DailyChoresController < ApplicationController
 
     respond_to do |format|
       if @daily_chore.save
-        format.html { redirect_to daily_chore_url(@daily_chore), notice: "Daily chore was successfully created." }
+        format.html { redirect_to daily_chore_url(@daily_chore), notice: 'Daily chore was successfully created.' }
         format.json { render :show, status: :created, location: @daily_chore }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class DailyChoresController < ApplicationController
   def update
     respond_to do |format|
       if @daily_chore.update(daily_chore_params)
-        format.html { redirect_to daily_chore_url(@daily_chore), notice: "Daily chore was successfully updated." }
+        format.html { redirect_to daily_chore_url(@daily_chore), notice: 'Daily chore was successfully updated.' }
         format.json { render :show, status: :ok, location: @daily_chore }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +52,20 @@ class DailyChoresController < ApplicationController
     @daily_chore.destroy
 
     respond_to do |format|
-      format.html { redirect_to daily_chores_url, notice: "Daily chore was successfully destroyed." }
+      format.html { redirect_to daily_chores_url, notice: 'Daily chore was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_daily_chore
-      @daily_chore = DailyChore.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def daily_chore_params
-      params.require(:daily_chore).permit(:chore_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_daily_chore
+    @daily_chore = DailyChore.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def daily_chore_params
+    params.require(:daily_chore).permit(:chore_id)
+  end
 end
