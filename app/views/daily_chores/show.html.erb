@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @daily_chore %>
+
+<div>
+  <%= link_to "Edit this daily chore", edit_daily_chore_path(@daily_chore) %> |
+  <%= link_to "Back to daily chores", daily_chores_path %>
+
+  <%= button_to "Destroy this daily chore", @daily_chore, method: :delete %>
+</div>

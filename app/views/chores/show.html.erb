@@ -6,3 +6,9 @@
 
   <%= button_to "Destroy this chore", @chore, method: :delete %>
 </div>
+
+<h3>Records</h3>
+
+<% @chore.daily_chores.order(created_at: :asc).each do |daily_chore| %>
+  <%= daily_chore.created_at.strftime('%A, %d %b %Y') %>
+<% end %>

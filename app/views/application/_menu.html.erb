@@ -7,6 +7,9 @@
   </div>
 
   <div id="menu-actions">
+    <%= link_to new_daily_chore_path do %>
+      <%= t('app.new_daily_chore') %>
+    <% end %>
     <%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo: false } } do %>
       <%= t('app.logout') %>
     <% end %>
