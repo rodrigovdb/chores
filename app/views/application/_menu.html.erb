@@ -1,17 +1,38 @@
-<section id="menu">
-  <div id="menu-logo">
-    <%= link_to root_path do %>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <%= link_to root_path, class: 'navbar-brand' do %>
       <%= t('home') %>
       <%# <%= image_tag('logo.png', alt: 'Logo') %1> %>
     <% end %>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to chores_path, class: 'nav-link' do %>
+            <%= t('app.chores') %>
+          <% end %>
+        </li>
+        <li class="nav-item">
+          <%= link_to new_daily_chore_path, class: 'nav-link' do %>
+            <%= t('app.new_daily_chore') %>
+          <% end %>
+        </li>
+      </ul>
+      <ul class="navbar-nav d-flex">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= t('app.user_actions ') %>
+          </a>
+          <ul class="dropdown-menu">
+            <%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo: false } }, class: 'dropdown-item' do %>
+              <%= t('app.logout') %>
+            <% end %>
+            </li>
+          </ul>
+        </li>
+        </ul>
+    </div>
   </div>
-
-  <div id="menu-actions">
-    <%= link_to new_daily_chore_path do %>
-      <%= t('app.new_daily_chore') %>
-    <% end %>
-    <%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo: false } } do %>
-      <%= t('app.logout') %>
-    <% end %>
-  </div>
-</section>
+</nav>
