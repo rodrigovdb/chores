@@ -36,3 +36,18 @@ pt-BR:
       short: "%d de %B"
       long: "%A, %d de %B de %Y"
       week_day: "%A"
+  controllers:
+    chores:
+      create:
+        notice: "Tarefa criada com sucesso!"
+      destroy:
+        notice: "Tarefa excluída com sucesso!"
+      update:
+        notice: "Tarefa atualizada com sucesso!"
+    daily_chores:
+      create:
+        notice: "Tarefa diária criada com sucesso!"
+      destroy:
+        notice: "Tarefa diária excluída com sucesso!"
+      update:
+        notice: "Tarefa diária atualizada com sucesso!"

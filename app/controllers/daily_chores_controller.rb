@@ -25,7 +25,7 @@ class DailyChoresController < ApplicationController
 
     respond_to do |format|
       if @daily_chore.save
-        format.html { redirect_to daily_chore_url(@daily_chore), notice: 'Daily chore was successfully created.' }
+        format.html { redirect_to daily_chore_url(@daily_chore), t('controllers.daily_chores.create') }
         format.json { render :show, status: :created, location: @daily_chore }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class DailyChoresController < ApplicationController
   def update
     respond_to do |format|
       if @daily_chore.update(daily_chore_params)
-        format.html { redirect_to daily_chore_url(@daily_chore), notice: 'Daily chore was successfully updated.' }
+        format.html { redirect_to daily_chore_url(@daily_chore), t('controllers.daily_chores.update') }
         format.json { render :show, status: :ok, location: @daily_chore }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class DailyChoresController < ApplicationController
     @daily_chore.destroy
 
     respond_to do |format|
-      format.html { redirect_to daily_chores_url, notice: 'Daily chore was successfully destroyed.' }
+      format.html { redirect_to daily_chores_url, notice: t('controllers.daily_chores.destroy') }
       format.json { head :no_content }
     end
   end
