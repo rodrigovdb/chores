@@ -61,6 +61,8 @@ pt-BR:
     new_daily_chore: 'Registrar Tarefa'
     week: 'Semana'
     cancel: 'Cancelar'
+    register: 'Registrar'
+    save: 'Save'
   activerecord:
     models:
       chore:
@@ -77,3 +79,4 @@ pt-BR:
         chore: "Tarefa"
         date: "Data"
         done: "Feito"
+        created_at: "Quando"

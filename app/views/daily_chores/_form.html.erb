@@ -7,15 +7,22 @@
         <%= render 'errors', object: daily_chore %>
       <% end %>
 
-      <div class="mb-3">
-        <%= form.label :chore, class: 'form-label' %>
-        <%= form.collection_select :chore_id, Chore.order(:name), :id, :name, html_options: { class: 'form-select' } %>
+      <div class="input-group mb-3">
+        <%= form.label :chore, class: 'input-group-text' %>
+        <%= form.collection_select :chore_id, Chore.order(:name), :id, :name, { prompt: t('app.select') }, {class: 'form-select'} %>
+      </div>
+
+      <div class="input-group mb-3">
+        <%= form.label :created_at, class: 'input-group-text' %>
+        <%= form.date_select :created_at, {}, { class: 'form-select' } %>
       </div>
 
       <%= button_tag submit: true, class: 'btn btn-outline-dark' do %>
-    Registrar
+        <%= icon('fa-solid', 'save') %>
+        <%= t('app.save') %>
       <% end %>
       <%= link_to root_path, class: 'btn btn-outline-secondary' do %>
+        <%= icon('fa-solid', 'times') %>
         <%= t('app.cancel') %>
       <% end %>
     <% end %>

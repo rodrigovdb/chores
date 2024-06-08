@@ -13,7 +13,7 @@ class DailyChoresController < ApplicationController
 
   # GET /daily_chores/new
   def new
-    @daily_chore = DailyChore.new
+    @daily_chore = DailyChore.new(created_at: Time.current)
   end
 
   # GET /daily_chores/1/edit
@@ -67,6 +67,6 @@ class DailyChoresController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def daily_chore_params
-    params.require(:daily_chore).permit(:chore_id)
+    params.require(:daily_chore).permit(:chore_id, :created_at)
   end
 end
