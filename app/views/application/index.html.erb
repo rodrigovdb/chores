@@ -19,7 +19,10 @@
         <td><%= chore.name %></td>
 
         <% @week.each do |day| %>
-          <td><%= @daily_chores.for_chore(chore).for_day(day).any? %></td>
+          <td>
+            <%= icon('fa-solid', @daily_chores.for_chore(chore).for_day(day).any? ? 'check' : 'xmark')%>
+          <!-- <%=  %> -->
+          </td>
         <% end %>
       </tr>
     <% end %>
