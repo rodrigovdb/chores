@@ -2,9 +2,23 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0px;
   padding: 0px;
+  height: 100vh;
 }
 
 #menu {
   background-color: #ccc;
   padding: 10px;
+}
+
+#content {
+  height: 100vh
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  text-align: center;
+  width: 100vw;
+  font-size: 12px;
+  padding: 5px;
 }

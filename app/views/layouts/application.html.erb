@@ -12,9 +12,8 @@
 
   <body>
     <div id="layout">
-      <%= render 'menu' if current_user %>
-
       <section id="content">
+        <%= render 'menu' if current_user %>
         <%= yield %>
       </section>
 
