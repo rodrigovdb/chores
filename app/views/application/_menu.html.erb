@@ -23,7 +23,7 @@
       <ul class="navbar-nav d-flex">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <%= t('app.user_actions ') %>
+            <%= t('app.user_actions') %>
           </a>
           <ul class="dropdown-menu">
             <%= button_to destroy_user_session_path, method: :delete, form: { data: { turbo: false } }, class: 'dropdown-item' do %>

@@ -51,3 +51,13 @@ pt-BR:
         notice: "Tarefa diária excluída com sucesso!"
       update:
         notice: "Tarefa diária atualizada com sucesso!"
+  app:
+    name: "Tarefas Diárias"
+    description: "Uma aplicação para gerenciar tarefas diárias."
+    user_actions: "Ações do Usuário"
+    welcome: "Bem-vindo ao %{app_name}!"
+    footer: "Desenvolvido por %{author}"
+    chores: 'Tarefas Diárias'
+    new_daily_chore: 'Registrar Tarefa'
+    week: 'Semana'
+
