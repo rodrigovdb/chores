@@ -1,0 +1,15 @@
+<h1>Week</h1>
+
+<div class="chores-week">
+  <div class="chores-week-header">
+    <div class="chores-week-header-day"></div>
+    <div class="chores-week-header-chores">
+      <% @week.each do |day| %>
+        <div class="chores-week-header-chore">
+          <div><%= l(day) %></div>
+          <div><%= l(day, format: :week_day).titleize %></div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
