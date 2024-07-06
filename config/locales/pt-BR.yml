@@ -67,6 +67,7 @@ pt-BR:
     save: 'Salvar'
     edit: 'Editar %{item}'
     confirm_delete: 'Tem certeza que deseja excluir este registro?'
+    select: "Selecione"
   activerecord:
     models:
       chore:

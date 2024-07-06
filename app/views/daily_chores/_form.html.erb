@@ -2,7 +2,7 @@
 
 <div class="card my-2">
   <div class="card-body">
-    <%= form_with(model: daily_chore) do |form| %>
+    <%= form_with model: daily_chore do |form| %>
       <% if daily_chore.errors.any? %>
         <%= render 'errors', object: daily_chore %>
       <% end %>
@@ -14,7 +14,14 @@
 
       <div class="input-group mb-3">
         <%= form.label :created_at, class: 'input-group-text' %>
-        <%= form.date_select :created_at, {}, { class: 'form-select' } %>
+
+        <%= form.text_field :created_at,
+          data: {
+            controller: "flatpickr",
+            flatpickr_min_date: Date.current.prev_month,
+            flatpickr_max_date: Date.current.tomorrow,
+          },
+          class: 'form-control' %>
       </div>
 
       <%= button_tag submit: true, class: 'btn btn-outline-dark' do %>
