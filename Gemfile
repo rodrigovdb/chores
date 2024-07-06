@@ -7,7 +7,6 @@ ruby '3.2.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'bootsnap', require: false
-gem 'bootstrap', '~> 5.3'
 gem 'devise', '~> 4.9'
 gem 'importmap-rails'
 gem 'jbuilder'
@@ -23,6 +22,7 @@ gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Use Sass to process CSS
+gem 'bootstrap', '~> 5.3'
 gem 'font-awesome-sass'
 gem 'sassc-rails'
 

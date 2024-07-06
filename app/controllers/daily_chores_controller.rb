@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 class DailyChoresController < ApplicationController
+  before_action :set_chores_for_the_week, only: %i[index create]
   before_action :set_daily_chore, only: %i[show edit update destroy]
 
   # GET /daily_chores or /daily_chores.json
-  def index
-    @chores = Chore.all
-    @daily_chores = DailyChore.for_this_week
-    @week = Date.current.all_week
-  end
+  def index; end
 
   # GET /daily_chores/1 or /daily_chores/1.json
   def show; end
@@ -61,6 +58,12 @@ class DailyChoresController < ApplicationController
   end
 
   private
+
+  def set_chores_for_the_week
+    @chores = Chore.all
+    @daily_chores = DailyChore.for_this_week
+    @week = Date.current.all_week
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_daily_chore

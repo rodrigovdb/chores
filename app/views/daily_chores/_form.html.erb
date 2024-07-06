@@ -1,5 +1,3 @@
-
-
 <div class="card my-2">
   <div class="card-body">
     <%= form_with model: daily_chore do |form| %>
@@ -20,6 +18,8 @@
             controller: "flatpickr",
             flatpickr_min_date: Date.current.prev_month,
             flatpickr_max_date: Date.current.tomorrow,
+            flatpickr_date_format: "Y-m-d",
+            flatpickr_alt_format: "Y-m-d",
           },
           class: 'form-control' %>
       </div>
