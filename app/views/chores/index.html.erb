@@ -1,12 +1,14 @@
-<h1>Chores</h1>
+<h1><%= Chore.model_name.human.pluralize %></h1>
 
-<div id="chores">
-  <% @chores.each do |chore| %>
-    <%= render chore %>
-    <p>
-    <%= link_to "Edit this chore", edit_chore_path(chore) %> 
-    </p>
+<%= link_to new_chore_path, data: { turbo_frame: dom_id(Chore.new) }, class: 'btn btn-outline-dark mb-3' do %>
+  <i class="fa fa-plus"></i>
+ <%= t('app.new', item: Chore.model_name.human) %>
+<% end %>
+
+<%= turbo_frame_tag Chore.new %>
+
+<ul class="list-group list-group-flush">
+  <%= turbo_frame_tag 'chores' do %>
+    <%= render @chores %>
   <% end %>
-</div>
-
-<%= link_to "New chore", new_chore_path %>
+</ul>

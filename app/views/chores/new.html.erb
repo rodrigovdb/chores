@@ -1,9 +1,6 @@
-<h1>New chore</h1>
+<h1><%= t('app.new', item: Chore.model_name.human) %></h1>
+<%= link_to t('app.back', item: Chore.model_name.human.pluralize), chores_path %>
 
-<%= render "form", chore: @chore %>
-
-<br>
-
-<div>
-  <%= link_to "Back to chores", chores_path %>
-</div>
+<%= turbo_frame_tag @chore do %>
+  <%= render "form", chore: @chore %>
+<% end %>

@@ -52,6 +52,7 @@ pt-BR:
       update:
         notice: "Tarefa diária atualizada com sucesso!"
   app:
+    back: "Voltar para %{item}"
     name: "Tarefas Diárias"
     description: "Uma aplicação para gerenciar tarefas diárias."
     user_actions: "Ações do Usuário"
@@ -62,7 +63,10 @@ pt-BR:
     week: 'Semana'
     cancel: 'Cancelar'
     register: 'Registrar'
-    save: 'Save'
+    new: 'Cadastrar %{item}'
+    save: 'Salvar'
+    edit: 'Editar %{item}'
+    confirm_delete: 'Tem certeza que deseja excluir este registro?'
   activerecord:
     models:
       chore:
