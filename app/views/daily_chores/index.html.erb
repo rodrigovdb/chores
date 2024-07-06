@@ -1,14 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<h1><%= t('app.week') %></h1>
 
-<h1>Daily chores</h1>
+<%= link_to new_daily_chore_path, data: { turbo_frame: dom_id(DailyChore.new) }, class: 'btn mb-3 btn-outline-dark' do %>
+  <i class="fa fa-plus"></i>
+  <%= t('app.new_daily_chore') %>
+<% end %>
 
-<div id="daily_chores">
-  <% @daily_chores.each do |daily_chore| %>
-    <%= render daily_chore %>
-    <p>
-      <%= link_to "Show this daily chore", daily_chore %>
-    </p>
-  <% end %>
-</div>
+<%= turbo_frame_tag DailyChore.new %>
 
-<%= link_to "New daily chore", new_daily_chore_path %>
+<%= turbo_frame_tag 'chores-table' do %>
+  <%= render 'chores_table', chores: @chores, daily_chores: @daily_chores, week: @week %>
+<% end %>

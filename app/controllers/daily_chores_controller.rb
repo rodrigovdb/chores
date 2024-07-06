@@ -5,7 +5,9 @@ class DailyChoresController < ApplicationController
 
   # GET /daily_chores or /daily_chores.json
   def index
-    @daily_chores = DailyChore.all
+    @chores = Chore.all
+    @daily_chores = DailyChore.for_this_week
+    @week = Date.current.all_week
   end
 
   # GET /daily_chores/1 or /daily_chores/1.json
