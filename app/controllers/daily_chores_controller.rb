@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
 class DailyChoresController < ApplicationController
-  before_action :set_chores_for_the_week, only: %i[index create]
   before_action :set_daily_chore, only: %i[destroy]
+  before_action :set_chore_and_day, only: %i[destroy]
+  after_action :set_chore_and_day, only: %i[create]
 
   # GET /daily_chores or /daily_chores.json
-  def index; end
+  def index
+    @chores = Chore.all
+    @daily_chores = DailyChore.for_this_week
+    @week = Date.current.all_week
+  end
 
   # GET /daily_chores/new
   def new
@@ -17,9 +22,7 @@ class DailyChoresController < ApplicationController
     @daily_chore = DailyChore.where(daily_chore_params).first_or_initialize
 
     respond_to do |format|
-      if @daily_chore.save
-        format.turbo_stream
-      end
+      format.turbo_stream if @daily_chore.save
     end
   end
 
@@ -34,15 +37,14 @@ class DailyChoresController < ApplicationController
 
   private
 
-  def set_chores_for_the_week
-    @chores = Chore.all
-    @daily_chores = DailyChore.for_this_week
-    @week = Date.current.all_week
-  end
-
   # Use callbacks to share common setup or constraints between actions.
   def set_daily_chore
     @daily_chore = DailyChore.find(params[:id])
+  end
+
+  def set_chore_and_day
+    @chore = @daily_chore.chore
+    @day = @daily_chore.created_at.to_date
   end
 
   # Only allow a list of trusted parameters through.

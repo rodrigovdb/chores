@@ -1,0 +1,1 @@
+<%= turbo_stream.update @daily_chore.turbo_frame_tag_id, partial: "daily_chore", locals: { chore: @chore, day: @day, daily_chore: DailyChore.new(chore: @chore, created_at: @day.beginning_of_day) } %>

@@ -1,22 +1,18 @@
-<% daily_chore ||= DailyChore.new(chore:, created_at: day.beginning_of_day) %>
+<div data-controller="table">
 
-<%= turbo_frame_tag daily_chore.turbo_frame_tag_id do %>
-  <div data-controller="table">
-
-    <div style="display: none;">
-      <%= button_to 'enable', daily_chores_path, method: :post, data: { 'table-target': 'enableButton' }, params: { daily_chore: { chore_id: chore.id, created_at: day } } %>
-      <%= button_to 'disable', daily_chore, method: :delete, data: { 'table-target': 'disableButton' } %>
-    </div>
-
-    <div class="form-check form-switch">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        role="switch"
-        data-action="change->table#change"
-        name="daily_chore[completed]"
-        <%= daily_chore.id ? ' checked="checked"' : '' %>
-      />
-    </div>
+  <div style="display: none;">
+    <%= button_to 'enable', daily_chores_path, method: :post, data: { 'table-target': 'enableButton' }, params: { daily_chore: { chore_id: chore.id, created_at: day } } %>
+    <%= button_to 'disable', daily_chore, method: :delete, data: { 'table-target': 'disableButton' } %>
   </div>
-<% end %>
+
+  <div class="form-check form-switch">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      role="switch"
+      data-action="change->table#change"
+      name="daily_chore[completed]"
+      <%= daily_chore.id ? ' checked="checked"' : '' %>
+    />
+  </div>
+</div>
