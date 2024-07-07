@@ -6,20 +6,21 @@ networks:
 services:
   postgres:
     image: postgres:alpine
-    env_file:
-      - .env
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres_data:/var/lib/postgresql/datadeploy:
     networks:
       net:
         aliases:
           - postgres
-    # resources:
-    #   limits:
-    #     memory: '1.5GB'
-    #     cpus: '0.4'
+    ports:
+      - 5433:5432
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: '1.5GB'
+    #       cpus: '0.4'
 
   web:
     image: chores
