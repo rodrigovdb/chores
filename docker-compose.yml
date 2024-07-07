@@ -6,16 +6,20 @@ networks:
 services:
   postgres:
     image: postgres:alpine
-    networks:
-      net:
-        aliases:
-          - postgres
     env_file:
       - .env
     ports:
       - 5432:5432
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/datadeploy:
+    networks:
+      net:
+        aliases:
+          - postgres
+    # resources:
+    #   limits:
+    #     memory: '1.5GB'
+    #     cpus: '0.4'
 
   web:
     image: chores
@@ -32,6 +36,30 @@ services:
       net:
         aliases:
           - web
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: '0.6GB'
+    #       cpus: '0.3'
+
+  nginx:
+    image: nginx
+    command: ["nginx", "-g", "daemon off;"]
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 9999:80
+    depends_on:
+      - web
+    networks:
+      net:
+        aliases:
+          - nginx
+    # deploy:
+    #   resources:
+    #     limits:
+    #       memory: '0.1GB'
+    #       cpus: '0.1'
 
 volumes:
   postgres_data:
