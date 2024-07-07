@@ -18,12 +18,9 @@
 
         <% week.each do |day| %>
           <td>
-            <%= icon('fa-solid', daily_chores.for_chore(chore).for_day(day).any? ? 'check' : 'xmark')%>
-            <!--
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            </div>
-            -->
+            <% daily_chore = daily_chores.for_chore(chore).for_day(day).first %>
+
+            <%= render 'daily_chore', chore:, day:, daily_chore: %>
           </td>
         <% end %>
       </tr>
