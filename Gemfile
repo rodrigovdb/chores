@@ -8,6 +8,7 @@ ruby '3.2.0'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'bootsnap', require: false
 gem 'devise', '~> 4.9'
+gem 'dotenv-rails'
 gem 'importmap-rails'
 gem 'jbuilder'
 gem 'puma', '~> 5.0'
@@ -19,7 +20,7 @@ gem 'turbo-rails'
 
 # Database
 gem 'pg'
-gem 'sqlite3', '~> 1.4'
+# gem 'sqlite3', '~> 1.4'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -28,6 +29,9 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'bootstrap', '~> 5.3'
 gem 'font-awesome-sass'
 gem 'sassc-rails'
+
+# OIDC
+gem 'omniauth_openid_connect'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
