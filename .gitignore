@@ -36,3 +36,5 @@
 
 .env
 *.swp
+
+/config/credentials/production.key

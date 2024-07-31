@@ -26,4 +26,4 @@ class User < ApplicationRecord
       user
     end
   end
-nd
+end

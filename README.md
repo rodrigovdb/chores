@@ -16,6 +16,10 @@ Then, add to the layout
 
 https://github.com/ccrockett/omniauth-keycloak?tab=readme-ov-file#devise-usage
 
+## Credentials
+
+`rails credentials:edit --environment production`
+
 # TODO
 
 - [locale for flatpickr](https://github.com/flatpickr/flatpickr/blob/master/src/l10n/pt.ts)

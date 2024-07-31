@@ -273,16 +273,22 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  # config.omniauth :keycloak_openid, "Example-Client-Name", "example-secret-if-configured", client_options: { site: "https://example.keycloak-url.com", realm: "example-realm" }, :strategy_class => OmniAuth::Strategies::KeycloakOpenId
+  # config.omniauth(
+  #   :keycloak_openid,
+  #   Rails.application.credentials.keycloak[:client_name],
+  #   Rails.application.credentials.keycloak[:client_secret],
+  #   client_options: {
+  #     site: Rails.application.credentials.keycloak.dig(:client_options, :site),
+  #     realm: Rails.application.credentials.keycloak.dig(:client_options, :realm),
+  #     base_url: Rails.application.credentials.keycloak.dig(:client_options, :base_url)
+  #   },
+  #   strategy_class: OmniAuth::Strategies::KeycloakOpenId
+  # )
   config.omniauth(
     :keycloak_openid,
-    'oidc-provider',
-    'rmcIdhiBEDSfExsdH1BHPR2V1vnAkiy3',
-    client_options: {
-      site: 'http://localhost:4000',
-      realm: 'vdb',
-      base_url: ''
-    },
+    Rails.application.credentials.keycloak[:client_name],
+    Rails.application.credentials.keycloak[:client_secret],
+    client_options: Rails.application.credentials.keycloak[:client_options],
     strategy_class: OmniAuth::Strategies::KeycloakOpenId
   )
 
