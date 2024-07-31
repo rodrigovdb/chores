@@ -8,6 +8,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - 'db/seeds.rb'
+    - 'db/schema.rb'
     - 'bin/**'
 
 Style/Documentation:
