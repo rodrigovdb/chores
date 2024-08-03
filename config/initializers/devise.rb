@@ -272,25 +272,18 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-
-  # config.omniauth(
-  #   :keycloak_openid,
-  #   Rails.application.credentials.keycloak[:client_name],
-  #   Rails.application.credentials.keycloak[:client_secret],
-  #   client_options: {
-  #     site: Rails.application.credentials.keycloak.dig(:client_options, :site),
-  #     realm: Rails.application.credentials.keycloak.dig(:client_options, :realm),
-  #     base_url: Rails.application.credentials.keycloak.dig(:client_options, :base_url)
-  #   },
-  #   strategy_class: OmniAuth::Strategies::KeycloakOpenId
-  # )
   config.omniauth(
     :keycloak_openid,
-    Rails.application.credentials.keycloak[:client_name],
-    Rails.application.credentials.keycloak[:client_secret],
-    client_options: Rails.application.credentials.keycloak[:client_options],
+    ENV['DEVISE_KEYCLOAK_CLIENT_NAME'],
+    ENV['DEVISE_KEYCLOAK_CLIENT_SECRET'],
+    client_options: {
+      site: ENV['DEVISE_KEYCLOAK_SITE'],
+      realm: ENV['DEVISE_KEYCLOAK_REALM'],
+      base_url: ENV['DEVISE_KEYCLOAK_BASE_URL']
+    },
     strategy_class: OmniAuth::Strategies::KeycloakOpenId
   )
+
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
