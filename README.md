@@ -1,5 +1,9 @@
 # README
 
+# For Rodrigo from the future
+
+- using a local keycloak
+
 ## Flatpickr
 
 Importmap
