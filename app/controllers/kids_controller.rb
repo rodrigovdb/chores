@@ -2,6 +2,7 @@
 
 class KidsController < ApplicationController
   before_action :set_kid, only: %i[show edit update destroy]
+  before_action :set_form_section, only: %i[edit update]
 
   # GET /kids or /kids.json
   def index
@@ -17,7 +18,9 @@ class KidsController < ApplicationController
   end
 
   # GET /kids/1/edit
-  def edit; end
+  def edit
+    @chores = Chore.all
+  end
 
   # POST /kids or /kids.json
   def create
@@ -63,6 +66,10 @@ class KidsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_kid
     @kid = Kid.find(params[:id])
+  end
+
+  def set_form_section
+    @form_section = (params[:section] || :name).to_sym
   end
 
   # Only allow a list of trusted parameters through.

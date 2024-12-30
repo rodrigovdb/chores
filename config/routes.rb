@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'kid_chores/create'
+  get 'kid_chores/update'
   resources :kids
   resources :daily_chores
   resources :chores

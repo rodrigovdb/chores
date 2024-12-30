@@ -10,6 +10,18 @@
         <%= form.text_field :name, required: 'required', class: 'form-control' %>
       </div>
 
+      <div class="mb-3">
+        <% @chores.each do |chore| %>
+          <% id = dom_id(chore) %>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="<%= chore.id %>" id="<%= id %>">
+            <label class="form-check-label" for="<%= id %>">
+              <%= chore.name %>
+            </label>
+          </div>
+        <% end %>
+      </div>
+
       <%= form.submit class: 'btn btn-outline-dark' %>
       <%= link_to kids_path, class: 'btn btn-outline-secondary' do %>
         <%= t('app.cancel') %>

@@ -76,6 +76,8 @@ pt-BR:
     edit: 'Editar %{item}'
     confirm_delete: 'Tem certeza que deseja excluir este registro?'
     select: "Selecione"
+    kids_chores: "Possui as seguintes tarefas"
+    kids_no_chores: "Ainda não possui nenhuma tarefa"
   activerecord:
     models:
       chore:

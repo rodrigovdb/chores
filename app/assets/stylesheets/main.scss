@@ -24,6 +24,25 @@ body {
   }
 }
 
+.kid-list-name {
+  font-size: 20px;
+}
+
+.kid-chores-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 0px;
+  margin: 0px;
+
+  li {
+    border: solid 1px #ccc;
+    border-radius: 15px;
+    padding: 3px 5px;
+  }
+}
+
 footer {
   position: sticky;
   bottom: 0;
