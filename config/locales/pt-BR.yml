@@ -37,6 +37,13 @@ pt-BR:
       long: "%A, %d de %B de %Y"
       week_day: "%A"
   controllers:
+    create:
+      notice: "%{name} criada com sucesso!"
+    destroy:
+      notice: "%{name} excluída com sucesso!"
+    update:
+      notice: "%{name} atualizada com sucesso!"
+
     chores:
       create:
         notice: "Tarefa criada com sucesso!"
@@ -58,6 +65,7 @@ pt-BR:
     user_actions: "Ações do Usuário"
     welcome: "Bem-vindo ao %{app_name}!"
     footer: "Desenvolvido por %{author}"
+    kids: "Minhas Crianças"
     chores: 'Tarefas Diárias'
     new_daily_chore: 'Registrar Tarefa'
     week: 'Semana'
@@ -76,6 +84,9 @@ pt-BR:
       daily_chore:
         one: Tarefa Diária
         other: Tarefas Diárias
+      kid:
+        one: Criança
+        other: Crianças
     attributes:
       chore:
         name: "Nome"
@@ -85,3 +96,5 @@ pt-BR:
         date: "Data"
         done: "Feito"
         created_at: "Quando"
+      kid:
+        name: "Nome"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_07_31_004405) do
+ActiveRecord::Schema[7.0].define(version: 2024_12_29_234233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,6 +29,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_004405) do
     t.index ["chore_id"], name: "index_daily_chores_on_chore_id"
   end
 
+  create_table "kids", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_kids_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -44,4 +52,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_07_31_004405) do
   end
 
   add_foreign_key "daily_chores", "chores"
+  add_foreign_key "kids", "users"
 end

@@ -274,16 +274,15 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   config.omniauth(
     :keycloak_openid,
-    ENV['DEVISE_KEYCLOAK_CLIENT_NAME'],
-    ENV['DEVISE_KEYCLOAK_CLIENT_SECRET'],
+    ENV.fetch('DEVISE_KEYCLOAK_CLIENT_NAME', nil),
+    ENV.fetch('DEVISE_KEYCLOAK_CLIENT_SECRET', nil),
     client_options: {
-      site: ENV['DEVISE_KEYCLOAK_SITE'],
-      realm: ENV['DEVISE_KEYCLOAK_REALM'],
-      base_url: ENV['DEVISE_KEYCLOAK_BASE_URL']
+      site: ENV.fetch('DEVISE_KEYCLOAK_SITE', nil),
+      realm: ENV.fetch('DEVISE_KEYCLOAK_REALM', nil),
+      base_url: ENV.fetch('DEVISE_KEYCLOAK_BASE_URL', nil)
     },
     strategy_class: OmniAuth::Strategies::KeycloakOpenId
   )
-
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

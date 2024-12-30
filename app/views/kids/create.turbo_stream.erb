@@ -1,0 +1,2 @@
+<%= turbo_stream.append "kids", partial: "kids/kid", locals: { kid: @kid } %>
+<%= turbo_stream.update Kid.new, "" %>

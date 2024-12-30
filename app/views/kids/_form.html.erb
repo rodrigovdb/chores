@@ -1,0 +1,19 @@
+<div class="card my-2">
+  <div class="card-body">
+    <%= form_with(model: kid) do |form| %>
+      <% if kid.errors.any? %>
+        <%= render 'errors', object: kid %>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :name, class: 'form-label' %>
+        <%= form.text_field :name, required: 'required', class: 'form-control' %>
+      </div>
+
+      <%= form.submit class: 'btn btn-outline-dark' %>
+      <%= link_to kids_path, class: 'btn btn-outline-secondary' do %>
+        <%= t('app.cancel') %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

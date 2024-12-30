@@ -1,0 +1,18 @@
+<%= turbo_frame_tag kid do %>
+  <li class="list-group-item">
+    <div class="d-flex w-100 justify-content-between">
+      <div><%= kid.name %></div>
+
+      <div>
+        <div class="d-flex justify-content-end">
+          <%= link_to edit_kid_path(kid), data: { turbo_frame: kid }, class: 'btn btn-sm btn-outline-dark ms-2' do %>
+            <i class="fa fa-pencil"></i>
+          <% end %>
+          <%= button_to kid, method: :delete, form: { data: { turbo_confirm: t('app.confirm_delete') } }, class: 'btn btn-sm btn-outline-dark ms-2' do %>
+            <i class="fa fa-trash"></i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>
