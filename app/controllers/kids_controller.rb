@@ -3,6 +3,7 @@
 class KidsController < ApplicationController
   before_action :set_kid, only: %i[show edit update destroy]
   before_action :set_form_section, only: %i[edit update]
+  before_action :set_chores, only: %i[new create edit update]
 
   # GET /kids or /kids.json
   def index
@@ -19,7 +20,6 @@ class KidsController < ApplicationController
 
   # GET /kids/1/edit
   def edit
-    @chores = Chore.all
   end
 
   # POST /kids or /kids.json
@@ -72,6 +72,10 @@ class KidsController < ApplicationController
 
   def set_form_section
     @form_section = (params[:section] || :name).to_sym
+  end
+
+  def set_chores
+    @chores = Chore.all
   end
 
   # Only allow a list of trusted parameters through.
