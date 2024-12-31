@@ -20,15 +20,12 @@
         <% if kid.chores.any? %>
           <div><%= t('app.kids_chores') %></div>
           <ul class="kid-chores-list">
-            <%= render kid.kid_chores %>
+            <% kid.chores.each do |chore| %>
+              <li><%= chore.name %></li>
+            <% end %>
           </ul>
         <% else %>
           <div><%= t('app.kids_no_chores') %></div>
-        <% end %>
-
-        <%= link_to edit_kid_path(kid, section: :chores), data: { turbo_frame: dom_id(kid, 'chores') }, class: 'btn btn-outline-dark mb-3' do %>
-          <i class="fa fa-pencil"></i>
-          <%= t('app.edit', item: Chore.model_name.human.pluralize) %>
         <% end %>
       <% end %>
     </div>

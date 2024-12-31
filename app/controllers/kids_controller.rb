@@ -41,7 +41,9 @@ class KidsController < ApplicationController
   # PATCH/PUT /kids/1 or /kids/1.json
   def update
     respond_to do |format|
-      if @kid.update(kid_params)
+      to_update = kid_params.merge(chore_ids: params.dig(:kid, :chore_ids))
+
+      if @kid.update(to_update)
         format.html { redirect_to kid_url(@kid), notice: t('controllers.update', name: Kid.model_name.human) }
         format.json { render :show, status: :ok, location: @kid }
       else
