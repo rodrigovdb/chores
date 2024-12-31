@@ -7,6 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: %i[keycloakopenid]
 
+  has_many :chores, dependent: :destroy
   has_many :kids, dependent: :destroy
 
   class << self

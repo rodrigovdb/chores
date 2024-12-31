@@ -19,8 +19,7 @@ class KidsController < ApplicationController
   end
 
   # GET /kids/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /kids or /kids.json
   def create
@@ -75,7 +74,7 @@ class KidsController < ApplicationController
   end
 
   def set_chores
-    @chores = Chore.all
+    @chores = current_user.chores
   end
 
   # Only allow a list of trusted parameters through.

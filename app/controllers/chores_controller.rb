@@ -5,7 +5,7 @@ class ChoresController < ApplicationController
 
   # GET /chores or /chores.json
   def index
-    @chores = Chore.all
+    @chores = current_user.chores
   end
 
   # GET /chores/1 or /chores/1.json
