@@ -1,4 +1,4 @@
-<%= form_with model: daily_chore do |form| %>
+<%= form_with model: [@kid, daily_chore] do |form| %>
   <div class="input-group mb-3">
     <%= form.label :chore, class: 'input-group-text' %>
     <%= form.collection_select :chore_id, Chore.order(:name), :id, :name, { prompt: t('app.select') }, {class: 'form-select'} %>

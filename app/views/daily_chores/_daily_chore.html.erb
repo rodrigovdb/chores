@@ -1,18 +1,23 @@
-<div data-controller="table">
+<% daily_chore = kid.daily_chores.for_chore(chore).for_today.first %>
 
+<div data-controller="dashboard" class="px-3 py-2 d-flex flex-row gap-2">
   <div style="display: none;">
-    <%= button_to 'enable', daily_chores_path, method: :post, data: { 'table-target': 'enableButton' }, params: { daily_chore: { chore_id: chore.id, created_at: day } } %>
-    <%= button_to 'disable', daily_chore, method: :delete, data: { 'table-target': 'disableButton' } %>
+    <%= button_to 'enable', kid_daily_chores_path(kid), method: :post, data: { 'dashboard-target': 'enableButton' }, params: { daily_chore: { chore_id: chore.id } } %>
+    <% if daily_chore %>
+      <%= button_to 'disable', kid_daily_chore_path(kid, daily_chore), method: :delete, data: { 'dashboard-target': 'disableButton' } %>
+    <% end %>
   </div>
 
   <div class="form-check form-switch">
     <input
-      class="form-check-input"
-      type="checkbox"
-      role="switch"
-      data-action="change->table#change"
-      name="daily_chore[completed]"
-      <%= daily_chore.id ? ' checked="checked"' : '' %>
-    />
+    class="form-check-input"
+    type="checkbox"
+    role="switch"
+    data-action="change->dashboard#change"
+    name="daily_chore[completed]"
+    <%= daily_chore ? ' checked="checked"' : '' %> />
   </div>
+
+  <%= chore.name %>
 </div>
+

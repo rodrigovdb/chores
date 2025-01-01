@@ -1,1 +1,1 @@
-<%= turbo_stream.update @daily_chore.turbo_frame_tag_id, partial: "daily_chore", locals: { chore: @chore, day: @day, daily_chore: DailyChore.new(chore: @chore, created_at: @day.beginning_of_day) } %>
+<%= turbo_stream.update ['kid', @kid.id, 'chore', @daily_chore.chore_id].join('_'), partial: "daily_chore", locals: { kid: @kid, chore: @daily_chore.chore } %>

@@ -1,6 +1,6 @@
 <h1><%= t('app.week') %></h1>
 
-<%= link_to new_daily_chore_path, data: { turbo_frame: dom_id(DailyChore.new) }, class: 'btn mb-3 btn-outline-dark' do %>
+<%= link_to new_kid_daily_chore_path(@kid), data: { turbo_frame: dom_id(DailyChore.new) }, class: 'btn mb-3 btn-outline-dark' do %>
   <i class="fa fa-plus"></i>
   <%= t('app.new_daily_chore') %>
 <% end %>

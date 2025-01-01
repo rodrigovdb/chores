@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class DailyChoresController < ApplicationController
+  before_action :set_kid
   before_action :set_daily_chore, only: %i[destroy]
   before_action :set_chore_and_day, only: %i[destroy]
   after_action :set_chore_and_day, only: %i[create]
@@ -19,7 +20,7 @@ class DailyChoresController < ApplicationController
 
   # POST /daily_chores or /daily_chores.json
   def create
-    @daily_chore = DailyChore.where(daily_chore_params).first_or_initialize
+    @daily_chore = DailyChore.where(daily_chore_params.merge(kid_id: @kid.id)).first_or_initialize
 
     respond_to do |format|
       format.turbo_stream if @daily_chore.save
@@ -36,6 +37,10 @@ class DailyChoresController < ApplicationController
   end
 
   private
+
+  def set_kid
+    @kid = Kid.find(params[:kid_id])
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_daily_chore

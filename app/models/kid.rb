@@ -13,4 +13,8 @@ class Kid < ApplicationRecord
   accepts_nested_attributes_for :chores, allow_destroy: true, reject_if: proc { |id| id.blank? }
 
   default_scope { order(name: :asc) }
+
+  def has_chore_for_today?(chore:)
+    daily_chores.for_chore(chore).for_today.present?
+  end
 end
