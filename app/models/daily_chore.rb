@@ -2,6 +2,7 @@
 
 class DailyChore < ApplicationRecord
   belongs_to :chore
+  belongs_to :kid
 
   scope :for_this_week, -> { where(created_at: Date.current.all_week) }
   scope :for_day, ->(date) { where(created_at: date.all_day) }
