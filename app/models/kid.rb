@@ -11,4 +11,6 @@ class Kid < ApplicationRecord
   has_many :daily_chores, dependent: :destroy
 
   accepts_nested_attributes_for :chores, allow_destroy: true, reject_if: proc { |id| id.blank? }
+
+  default_scope { order(name: :asc) }
 end

@@ -1,0 +1,24 @@
+<% id = "collapse#{kid.id}" %>
+
+<li class="list-group-item">
+  <div class="d-flex flex-row justify-content-between align-items-center" data-bs-toggle="collapse" href="#<%= id %>" aria-expanded="false" aria-controls="<%= id %>">
+    <div class="d-flex flex-row gap-2">
+      <span>
+        <%= kid.name %>
+      </span>
+
+      <span>
+        (9 Dias)
+      </span>
+    </div>
+
+    <div>$ 2,00</div>
+  </div>
+
+  <div class="collapse my-3" id="<%= id %>">
+    <div class="card card-body">
+      Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+    </div>
+  </div>
+</li>
+

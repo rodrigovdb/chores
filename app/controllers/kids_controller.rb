@@ -7,7 +7,7 @@ class KidsController < ApplicationController
 
   # GET /kids or /kids.json
   def index
-    @kids = current_user.kids.order(name: :asc)
+    @kids = current_user.kids
   end
 
   # GET /kids/1 or /kids/1.json

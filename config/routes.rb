@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   resources :chores
 
   # Defines the root path route ("/")
-  root 'daily_chores#index'
+  root 'dashboard#index'
 end

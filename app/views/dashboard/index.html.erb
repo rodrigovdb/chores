@@ -1,0 +1,13 @@
+
+<%# <%= link_to new_daily_chore_path, data: { turbo_frame: dom_id(DailyChore.new) }, class: 'btn mb-3 btn-outline-dark' do %1> %>
+<%#   <i class="fa fa-plus"></i> %>
+<%#   <%= t('app.new_daily_chore') %1> %>
+<%# <% end %1> %>
+
+<%= turbo_frame_tag DailyChore.new %>
+
+<ul class="list-group">
+  <% @kids.each do |kid| %>
+    <%= render 'kid', kid: %>
+  <% end %>
+</ul>
