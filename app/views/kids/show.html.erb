@@ -1,4 +1,15 @@
-<h1><%= @kid.name %>
+<h1><%= @kid.name %></h1>
 
-<div class="">
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">
+      <%= I18n.localize(@week.first) %>
+      -
+      <%= I18n.localize(@week.last) %>
+    </h5>
+
+    <%= turbo_frame_tag 'week' do %>
+      <%= render 'chores_table', week: @week, daily_chores: @daily_chores, chores: @kid.chores %>
+    <% end %>
+  </div>
 </div>

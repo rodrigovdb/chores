@@ -2,7 +2,6 @@
 
 class KidsController < ApplicationController
   before_action :set_kid, only: %i[show edit update destroy]
-  before_action :set_form_section, only: %i[edit update]
   before_action :set_chores, only: %i[new create edit update]
 
   # GET /kids or /kids.json
@@ -11,7 +10,10 @@ class KidsController < ApplicationController
   end
 
   # GET /kids/1 or /kids/1.json
-  def show; end
+  def show
+    @week = (params[:date]&.to_date || Date.current).all_week
+    @daily_chores = @kid.daily_chores.for_week(@week)
+  end
 
   # GET /kids/new
   def new
@@ -67,10 +69,6 @@ class KidsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_kid
     @kid = Kid.find(params[:id])
-  end
-
-  def set_form_section
-    @form_section = (params[:section] || :name).to_sym
   end
 
   def set_chores

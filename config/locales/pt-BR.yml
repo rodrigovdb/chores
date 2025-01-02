@@ -80,6 +80,11 @@ pt-BR:
     kids_chores_form_subtitle: "Vamos acompanhar as seguintes tarefas"
     kids_chores: "Possui as seguintes tarefas"
     kids_no_chores: "Ainda não possui nenhuma tarefa"
+    previous_week: "Semana anterior"
+    next_week: "Próxima semana"
+    range:
+      from: 'de'
+      to: 'até'
   dashboard:
     today_chores: "Tarefas de hoje"
   activerecord:

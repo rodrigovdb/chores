@@ -1,31 +1,52 @@
-<%# <table class="chores-table" width=100%>%>
-<%#   <thead>%>
-<%#     <tr>%>
-<%#       <th></th>%>
-<%#       <% week.each do |day| %>%>
-<%#         <th>%>
-<%#           <div><%= l(day) %></div>%>
-<%#           <div><%= l(day, format: :week_day).titleize %></div>%>
-<%#         </th>%>
-<%#       <% end %>%>
-<%#     </tr>%>
-<%#   </thead>%>
+<table class="chores-table" width=100%>
+  <thead>
+    <tr>
+      <th></th>
+      <% week.each do |day| %>
+        <th>
+          <div><%= l(day) %></div>
+          <div><%= l(day, format: :week_day).titleize %></div>
+        </th>
+      <% end %>
+    </tr>
+  </thead>
 
-<%#   <tbody>%>
-<%#     <% chores.each do |chore| %>%>
-<%#       <tr>%>
-<%#         <td><%= chore.name %></td>%>
+  <tbody>
+    <% chores.each do |chore| %>
+      <tr>
+        <td><%= chore.name %></td>
 
-<%#         <% week.each do |day| %>%>
-<%#           <td>%>
-<%#             <% daily_chore = daily_chores.for_chore(chore).for_day(day).first || DailyChore.new(chore:, created_at: day.beginning_of_day) %>%>
+        <% week.each do |day| %>
+          <td>
+            <% if !day.future? %>
+              <% daily_chore = daily_chores.for_chore(chore).for_day(day).first %>
 
-<%#             <%= turbo_frame_tag daily_chore.turbo_frame_tag_id do %>%>
-<%#               <%= render 'daily_chore', chore:, day:, daily_chore: %>%>
-<%#             <% end %>%>
-<%#           </td>%>
-<%#         <% end %>%>
-<%#       </tr>%>
-<%#     <% end %>%>
-<%#   </tbody>%>
-<%# </table>%>
+              <span class="badge <%= daily_chore ? 'text-bg-success' : 'text-bg-danger' %> px-5">&nbsp;</span>
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-end mt-3">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <% previous_week = @week.first - 1.week %>
+      <% next_week = @week.first + 1.week %>
+
+      <li class="page-item">
+        <%= button_to t('app.previous_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (previous_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>
+      </li>
+
+      <li class="page-item <%= next_week.future? ? 'disabled' : '' %>">
+        <% if next_week.future? %>
+          <a class="page-link" href="#" disabled><%= t('app.next_week') %></a>
+        <% else %>
+          <%= button_to t('app.next_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (next_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>
+        <% end %>
+      </li>
+    </ul>
+  </nav>
+</div>
