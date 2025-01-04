@@ -1,8 +1,10 @@
-class Week
-  def initialize(kid:, date: nil)
-    date ||= Date.current
+# frozen_string_literal: true
 
-    @week = date.is_a?(Range) ? date : date.all_week
+class Week
+  def initialize(kid:, week: nil)
+    week ||= Date.current.all_week
+
+    @week = week.is_a?(Range) ? week : week.all_week
     @kid = kid
   end
 
@@ -15,34 +17,62 @@ class Week
   end
 
   def previous
-    self.class.new(date: self.begin - 1.week)
+    @previous ||= self.class.new(kid:, week: self.begin - 1.week)
   end
 
   def next
-    self.class.new(date: self.begin + 1.week)
+    @next ||= self.class.new(kid:, week: self.end + 1.week)
+  end
+
+  def days
+    @days ||= week.map do |day|
+      Day.new(day, chores, daily_chores.for_day(day))
+    end
+  end
+
+  def chores
+    @chores ||= kid.chores
+  end
+
+  def future?
+    self.begin.future?
   end
 
   def satisfied?
-    week.each do |day|
-      break if day.future?
-
-      chores.each do |chore|
-        return false unless daily_chores.for_day(day).map(&:chore_id).include?(chore.id)
-      end
-    end
-
-    true
+    @satisfied ||= days.all?(&:satisfied?)
   end
 
   private
 
   attr_reader :week, :kid
 
-  def chores
-    @chores ||= kid.chores
+  def daily_chores
+    @daily_chores ||= kid.daily_chores
   end
 
-  def daily_chores
-    @daily_chores ||= kid.daily_chores.for_week(week)
+  class Day
+    attr_reader :day, :chores, :daily_chores
+
+    delegate :past?, :future?, to: :day
+
+    def initialize(day, chores, daily_chores)
+      @day = day
+      @chores = chores
+      @daily_chores = daily_chores
+    end
+
+    def satisfied?
+      @satisfied ||= begin
+        return true unless day.past?
+
+        chores.all? { chore_ids.include?(_1.id) }
+      end
+    end
+
+    private
+
+    def chore_ids
+      @chore_ids ||= daily_chores.map(&:chore_id)
+    end
   end
 end

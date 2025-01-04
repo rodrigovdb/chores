@@ -11,9 +11,9 @@ class KidsController < ApplicationController
 
   # GET /kids/1 or /kids/1.json
   def show
-    @week = (params[:date]&.to_date || Date.current).all_week
-    @daily_chores = @kid.daily_chores.for_week(@week)
-    @satisfied = Week.new(kid: @kid, date: @week).satisfied?
+    week = (params[:date]&.to_date || Date.current).all_week
+
+    @week = Week.new(kid: @kid, week:)
   end
 
   # GET /kids/new

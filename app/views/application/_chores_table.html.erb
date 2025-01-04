@@ -1,28 +1,26 @@
-Satisfied: <%= satisfied %>
+Satisfied: <%= week.satisfied? %>
 <table class="chores-table" width=100%>
   <thead>
     <tr>
       <th></th>
-      <% week.each do |day| %>
+      <% week.days.each do |day| %>
         <th>
-          <div><%= l(day) %></div>
-          <div><%= l(day, format: :week_day).titleize %></div>
+          <div><%= l(day.day) %></div>
+          <div><%= l(day.day, format: :week_day).titleize %></div>
         </th>
       <% end %>
     </tr>
   </thead>
 
   <tbody>
-    <% chores.each do |chore| %>
+    <% week.chores.each do |chore| %>
       <tr>
         <td><%= chore.name %></td>
 
-        <% week.each do |day| %>
+        <% week.days.each do |day| %>
           <td>
-            <% if !day.future? %>
-              <% daily_chore = daily_chores.for_chore(chore).for_day(day).first %>
-
-              <span class="badge <%= daily_chore ? 'text-bg-success' : 'text-bg-danger' %> px-5">&nbsp;</span>
+            <% if day.past? %>
+              <span class="badge <%= day.satisfied? ? 'text-bg-success' : 'text-bg-danger' %> px-5">&nbsp;</span>
             <% end %>
           </td>
         <% end %>
@@ -34,8 +32,8 @@ Satisfied: <%= satisfied %>
 <div class="d-flex justify-content-end mt-3">
   <nav aria-label="Page navigation example">
     <ul class="pagination">
-      <% previous_week = @week.first - 1.week %>
-      <% next_week = @week.first + 1.week %>
+      <% previous_week = week.previous.begin %>
+      <% next_week = week.next.begin %>
 
       <li class="page-item">
         <%= button_to t('app.previous_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (previous_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>

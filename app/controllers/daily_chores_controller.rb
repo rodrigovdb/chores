@@ -8,8 +8,9 @@ class DailyChoresController < ApplicationController
 
   # GET /daily_chores or /daily_chores.json
   def index
-    @week = (params[:date]&.to_date || Date.current).all_week
-    @daily_chores = @kid.daily_chores.for_week(@week)
+    week = (params[:date]&.to_date || Date.current).all_week
+
+    @week = Week.new(kid: @kid, week:)
   end
 
   # GET /daily_chores/new
@@ -19,7 +20,12 @@ class DailyChoresController < ApplicationController
 
   # POST /daily_chores or /daily_chores.json
   def create
-    @daily_chore = DailyChore.where(daily_chore_params.merge(kid_id: @kid.id)).first_or_initialize
+    @daily_chore = DailyChore.where(
+      daily_chore_params.merge(
+        kid_id: @kid.id,
+        created_at: Time.current
+      )
+    ).first_or_initialize
 
     respond_to do |format|
       format.turbo_stream if @daily_chore.save

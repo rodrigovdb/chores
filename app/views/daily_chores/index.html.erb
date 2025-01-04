@@ -1,5 +1,5 @@
 <h1><%= t('app.week') %></h1>
 
 <%= turbo_frame_tag 'week' do %>
-  <%= render 'chores_table', week: @week, daily_chores: @daily_chores, chores: @kid.chores %>
+  <%= render 'chores_table', week: @week %>
 <% end %>
