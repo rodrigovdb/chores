@@ -9,7 +9,7 @@
     </h5>
 
     <%= turbo_frame_tag 'week' do %>
-      <%= render 'chores_table', week: @week %>
+      <%= render 'chores_table', week: @week, kid: @kid %>
     <% end %>
   </div>
 </div>

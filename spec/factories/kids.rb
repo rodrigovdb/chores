@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :kid do
-    user { nil }
-    name { 'MyString' }
+    user
+    name { Faker::Name.name }
   end
 end

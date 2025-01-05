@@ -1,4 +1,5 @@
-Satisfied: <%= week.satisfied? %>
+<%# Kid: <%= kid.to_json %1> %>
+<%# Satisfied: <%= week.satisfied? %1> %>
 <table class="chores-table" width=100%>
   <thead>
     <tr>
@@ -20,7 +21,10 @@ Satisfied: <%= week.satisfied? %>
         <% week.days.each do |day| %>
           <td>
             <% if day.past? %>
-              <span class="badge <%= day.satisfied? ? 'text-bg-success' : 'text-bg-danger' %> px-5">&nbsp;</span>
+              <span class="badge <%= day.satisfied? ? 'text-bg-success' : 'text-bg-danger' %> px-5">
+                &nbsp;
+                <%# <%= day.satisfied? ? '😀' : '😞' %1> %>
+              </span>
             <% end %>
           </td>
         <% end %>
@@ -35,17 +39,17 @@ Satisfied: <%= week.satisfied? %>
       <% previous_week = week.previous.begin %>
       <% next_week = week.next.begin %>
 
-      <li class="page-item">
-        <%= button_to t('app.previous_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (previous_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>
-      </li>
+      <% unless previous_week < kid.created_at %>
+        <li class="page-item">
+          <%= button_to t('app.previous_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (previous_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>
+        </li>
+      <% end %>
 
-      <li class="page-item <%= next_week.future? ? 'disabled' : '' %>">
-        <% if next_week.future? %>
-          <a class="page-link" href="#" disabled><%= t('app.next_week') %></a>
-        <% else %>
+      <% unless next_week.future? %>
+        <li class="page-item <%= next_week.future? ? 'disabled' : '' %>">
           <%= button_to t('app.next_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (next_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>
-        <% end %>
-      </li>
+        </li>
+      <% end %>
     </ul>
   </nav>
 </div>

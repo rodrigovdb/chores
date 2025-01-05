@@ -17,3 +17,6 @@ Style/Documentation:
 Layout/LineLength:
   Exclude:
     - 'config/initializers/devise.rb'
+
+RSpec/NamedSubject:
+  Enabled: no

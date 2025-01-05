@@ -26,7 +26,7 @@ class Week
 
   def days
     @days ||= week.map do |day|
-      Day.new(day, chores, daily_chores.for_day(day))
+      Day.new(kid, day, chores, daily_chores.for_day(day))
     end
   end
 
@@ -36,6 +36,14 @@ class Week
 
   def future?
     self.begin.future?
+  end
+
+  def before_kid?
+    @before_kid ||= days.any?(&:before_kid?)
+  end
+
+  def include_kid?
+    @include_kid ||= self.end < kid.created_at
   end
 
   def satisfied?
@@ -51,11 +59,12 @@ class Week
   end
 
   class Day
-    attr_reader :day, :chores, :daily_chores
+    attr_reader :kid, :day, :chores, :daily_chores
 
     delegate :past?, :future?, to: :day
 
-    def initialize(day, chores, daily_chores)
+    def initialize(kid, day, chores, daily_chores)
+      @kid = kid
       @day = day
       @chores = chores
       @daily_chores = daily_chores
@@ -63,10 +72,15 @@ class Week
 
     def satisfied?
       @satisfied ||= begin
-        return true unless day.past?
+        return true if before_kid?
+        return true if day.future?
 
         chores.all? { chore_ids.include?(_1.id) }
       end
+    end
+
+    def before_kid?
+      day < kid.created_at
     end
 
     private
