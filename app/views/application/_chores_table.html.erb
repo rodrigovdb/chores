@@ -6,8 +6,9 @@
       <th></th>
       <% week.days.each do |day| %>
         <th>
-          <div><%= l(day.day) %></div>
-          <div><%= l(day.day, format: :week_day).titleize %></div>
+          <%# <div><%= l(day.day) %1></div> %>
+          <%# <div><%= l(day.day, format: :week_day).titleize %1></div> %>
+          <div><%= l(day.day, format: :short_week_day).titleize %></div>
         </th>
       <% end %>
     </tr>
@@ -21,9 +22,13 @@
         <% week.days.each do |day| %>
           <td>
             <% if day.past? %>
-              <span class="badge <%= day.satisfied? ? 'text-bg-success' : 'text-bg-danger' %> px-5">
+              <span class="badge <%= day.satisfied? ? 'text-bg-success' : 'text-bg-danger' %> px-4">
                 &nbsp;
                 <%# <%= day.satisfied? ? '😀' : '😞' %1> %>
+              </span>
+            <% else %>
+              <span class="px-4">
+                &nbsp;
               </span>
             <% end %>
           </td>

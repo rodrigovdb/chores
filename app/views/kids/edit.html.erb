@@ -1,10 +1,6 @@
 <h1><%= t('app.edit', item: Kid.model_name.human) %></h1>
 <%= link_to t('app.back', item: Kid.model_name.human.pluralize), kids_path %>
 
-<%= turbo_frame_tag(@kid, 'chores') do %>
-  <%= render "form", kid: @kid, section: :chores %>
-<% end %>
-
 <%= turbo_frame_tag @kid do %>
-  <%= render "form", kid: @kid, section: :name %>
+  <%= render "form", kid: @kid, title: nil %>
 <% end %>

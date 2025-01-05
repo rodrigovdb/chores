@@ -1,5 +1,9 @@
-<div class="card my-2">
+<div class="card my-2 shaddow-card">
   <div class="card-body">
+    <% if title %>
+      <h3 class="card-title"><%= title %></h3>
+    <% end %>
+
     <%= form_with(model: kid) do |form| %>
       <% if kid.errors.any? %>
         <%= render 'errors', object: kid %>
@@ -10,9 +14,10 @@
         <%= form.text_field :name, required: 'required', class: 'form-control' %>
       </div>
 
+      <h6><%= t('app.kids_chores_form_title') %></h6>
       <div class="card mb-3">
         <div class="card-body">
-          <h5 class="card-title"><%= t('app.kids_chores_form_title') %></h5>
+          <%# <h5 class="card-title"><%= t('app.kids_chores_form_title') %1></h5> %>
           <h6 class="card-subtitle mb-2 text-body-secondary"><%= t('app.kids_chores_form_subtitle') %></h6>
           <%= form.collection_check_boxes :chore_ids, @chores, :id, :name do |b| %>
             <div>

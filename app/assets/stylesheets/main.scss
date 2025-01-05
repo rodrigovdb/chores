@@ -11,8 +11,12 @@ body {
 }
 
 #content {
-  height: 100vh;
+  min-height: 100vh;
   padding: 50px;
+  max-width: 960px;
+  margin: 0 auto;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px #888888;
 }
 
 #login {
@@ -22,6 +26,10 @@ body {
   .card-button {
     margin-top: 40px;
   }
+}
+
+.shaddow-card {
+  box-shadow: 0px 0px 5px #888888;
 }
 
 .kid-list-name {

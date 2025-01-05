@@ -1,11 +1,11 @@
 <h1><%= Chore.model_name.human.pluralize %></h1>
 
-<%= link_to new_chore_path, data: { turbo_frame: dom_id(Chore.new) }, class: 'btn btn-outline-dark mb-3' do %>
-  <i class="fa fa-plus"></i>
- <%= t('app.new', item: Chore.model_name.human) %>
+<%= turbo_frame_tag Chore.new do %>
+  <%= link_to new_chore_path, data: { turbo_frame: dom_id(Chore.new) }, class: 'btn btn-outline-dark mb-3' do %>
+    <i class="fa fa-plus"></i>
+    <%= t('app.new', item: Chore.model_name.human) %>
+  <% end %>
 <% end %>
-
-<%= turbo_frame_tag Chore.new %>
 
 <ul class="list-group list-group-flush">
   <%= turbo_frame_tag 'chores' do %>

@@ -1,13 +1,13 @@
 <h1><%= Kid.model_name.human.pluralize %></h1>
 
-<%= link_to new_kid_path, data: { turbo_frame: dom_id(Kid.new) }, class: 'btn btn-outline-dark mb-3' do %>
-  <i class="fa fa-plus"></i>
- <%= t('app.new', item: Kid.model_name.human) %>
+<%= turbo_frame_tag Kid.new do %>
+  <%= link_to new_kid_path, data: { turbo_frame: dom_id(Kid.new) }, class: 'btn btn-outline-dark mb-3' do %>
+    <i class="fa fa-plus"></i>
+    <%= t('app.new', item: Kid.model_name.human) %>
+  <% end %>
 <% end %>
 
-<%= turbo_frame_tag Kid.new %>
-
-<ul class="list-group">
+<ul class="list-group list-group-flush">
   <%= turbo_frame_tag 'kids' do %>
     <%= render @kids %>
   <% end %>

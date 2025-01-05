@@ -36,6 +36,7 @@ pt-BR:
       short: "%d de %B"
       long: "%A, %d de %B de %Y"
       week_day: "%A"
+      short_week_day: "%a"
   controllers:
     create:
       notice: "%{name} criada com sucesso!"
@@ -84,7 +85,11 @@ pt-BR:
     next_week: "Próxima semana"
     range:
       from: 'de'
-      to: 'até'
+      to: 'a'
+    streak:
+      days:
+        one: 'dia'
+        other: 'dias'
   dashboard:
     today_chores: "Tarefas de hoje"
   activerecord:

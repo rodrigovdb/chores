@@ -2,5 +2,5 @@
 <%= link_to t('app.back', item: Chore.model_name.human.pluralize), chores_path %>
 
 <%= turbo_frame_tag @chore do %>
-  <%= render "form", chore: @chore %>
+  <%= render "form", chore: @chore, title: nil %>
 <% end %>

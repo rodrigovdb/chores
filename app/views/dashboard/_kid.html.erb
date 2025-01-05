@@ -3,7 +3,11 @@
     <div class="d-flex flex-row gap-2">
       <span> <%= kid.name %> </span>
 
-      <span> (9 Dias) </span>
+      <span>
+        <% days  = streak_for(kid)[:days] %>
+        (<%= days %>
+      <%= t('app.streak.days', count: days) %>)
+      </span>
     </div>
 
 
@@ -20,6 +24,13 @@
     <div class="card-body">
       <h5 class="card-title"><%= t('dashboard.today_chores') %></h5>
 
+      <ul class="list-group">
+        <li class="list-group-item">An item</li>
+        <li class="list-group-item">A second item</li>
+        <li class="list-group-item">A third item</li>
+        <li class="list-group-item">A fourth item</li>
+        <li class="list-group-item">And a fifth one</li>
+      </ul>
       <div class="d-flex flex-row justify-content-between">
         <% kid.chores.each do |chore| %>
           <%= turbo_frame_tag ['kid', kid.id, 'chore', chore.id] do %>

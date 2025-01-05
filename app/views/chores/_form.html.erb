@@ -1,5 +1,9 @@
-<div class="card my-2">
+<div class="card my-2 shaddow-card">
   <div class="card-body">
+    <% if title %>
+      <h3 class="card-title"><%= title %></h3>
+    <% end %>
+
     <%= form_with(model: chore) do |form| %>
       <% if chore.errors.any? %>
         <%= render 'errors', object: chore %>

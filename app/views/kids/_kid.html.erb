@@ -19,9 +19,9 @@
       <div class="card-body">
         <% if kid.chores.any? %>
           <h6 class="card-subtitle mb-2 text-body-secondary"><%= t('app.kids_chores') %></h6>
-          <ul class="kid-chores-list">
+          <ul class="list-group">
             <% kid.chores.each do |chore| %>
-              <li><%= chore.name %></li>
+              <li class="list-group-item"><%= chore.name %></li>
             <% end %>
           </ul>
         <% else %>

@@ -14,6 +14,7 @@ class KidsController < ApplicationController
     week = (params[:date]&.to_date || Date.current).all_week
 
     @week = Week.new(kid: @kid, week:)
+    @streak = StreakService.call(kid: @kid)
   end
 
   # GET /kids/new
@@ -48,6 +49,7 @@ class KidsController < ApplicationController
       if @kid.update(to_update)
         format.html { redirect_to kid_url(@kid), notice: t('controllers.update', name: Kid.model_name.human) }
         format.json { render :show, status: :ok, location: @kid }
+        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @kid.errors, status: :unprocessable_entity }
