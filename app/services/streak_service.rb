@@ -41,7 +41,7 @@ class StreakService < ApplicationService
   def find_first_day(week = nil)
     week ||= current_week
 
-    if week.before_kid? || !week.satisfied? || week.begin == kid.created_at
+    if week.before_kid? || !week.satisfied? || week.begin == kid.created_at || week.previous.end < kid.created_at
       return week.days.find { |week_day| !week_day.before_kid? && week_day.satisfied? }.day
     end
 

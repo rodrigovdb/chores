@@ -51,6 +51,22 @@ body {
   }
 }
 
+table.chores-table {
+  th {
+    padding: 10px 5px;
+    text-align: center;
+  }
+
+  td {
+    border: solid 1px #ccc;
+    padding: 5px;
+
+    &.chores-title {
+      padding: 10px;
+    }
+  }
+}
+
 footer {
   position: sticky;
   bottom: 0;

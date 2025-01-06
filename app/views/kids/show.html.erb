@@ -2,13 +2,6 @@
 
 <div class="card">
   <div class="card-body">
-    <h4 class="card-title"><%= t('app.week') %></h4>
-    <h6 class="card-subtitle mb-3">
-      <%= I18n.localize(@week.begin) %>
-      <%= t('app.range.to') %>
-      <%= I18n.localize(@week.end) %>
-    </h6>
-
     <%= turbo_frame_tag 'week' do %>
       <%= render 'chores_table', week: @week, kid: @kid %>
     <% end %>

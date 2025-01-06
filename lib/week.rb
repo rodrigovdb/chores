@@ -61,7 +61,7 @@ class Week
   class Day
     attr_reader :kid, :day, :chores, :daily_chores
 
-    delegate :past?, :future?, to: :day
+    delegate :past?, :future?, :today?, to: :day
 
     def initialize(kid, day, chores, daily_chores)
       @kid = kid

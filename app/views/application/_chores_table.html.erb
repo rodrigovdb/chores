@@ -1,41 +1,48 @@
+<h4 class="card-title"><%= t('app.week') %></h4>
+<h6 class="card-subtitle mb-3">
+  <%= l(@week.begin) %>
+  <%= t('app.range.to') %>
+  <%= l(@week.end) %>
+</h6>
+
 <%# Kid: <%= kid.to_json %1> %>
 <%# Satisfied: <%= week.satisfied? %1> %>
 <table class="chores-table" width=100%>
-  <thead>
+<thead>
+  <tr>
+    <th></th>
+    <% week.days.each do |day| %>
+      <th>
+        <%# <div><%= l(day.day) %1></div> %>
+        <%# <div><%= l(day.day, format: :week_day).titleize %1></div> %>
+        <div><%= l(day.day, format: :short_week_day).titleize %></div>
+      </th>
+    <% end %>
+  </tr>
+</thead>
+
+<tbody>
+  <% week.chores.each do |chore| %>
     <tr>
-      <th></th>
+      <td class="chore-name"><%= chore.name %></td>
+
       <% week.days.each do |day| %>
-        <th>
-          <%# <div><%= l(day.day) %1></div> %>
-          <%# <div><%= l(day.day, format: :week_day).titleize %1></div> %>
-          <div><%= l(day.day, format: :short_week_day).titleize %></div>
-        </th>
+        <td>
+          <% if day.past? or (day.today? and day.satisfied?) %>
+            <span class="badge <%= day.satisfied? ? 'text-bg-success' : 'text-bg-danger' %> px-4">
+              &nbsp;
+              <%# <%= day.satisfied? ? '😀' : '😞' %1> %>
+            </span>
+          <% else %>
+            <span class="px-4">
+              &nbsp;
+            </span>
+          <% end %>
+        </td>
       <% end %>
     </tr>
-  </thead>
-
-  <tbody>
-    <% week.chores.each do |chore| %>
-      <tr>
-        <td><%= chore.name %></td>
-
-        <% week.days.each do |day| %>
-          <td>
-            <% if day.past? %>
-              <span class="badge <%= day.satisfied? ? 'text-bg-success' : 'text-bg-danger' %> px-4">
-                &nbsp;
-                <%# <%= day.satisfied? ? '😀' : '😞' %1> %>
-              </span>
-            <% else %>
-              <span class="px-4">
-                &nbsp;
-              </span>
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
+  <% end %>
+</tbody>
 </table>
 
 <div class="d-flex justify-content-end mt-3">
