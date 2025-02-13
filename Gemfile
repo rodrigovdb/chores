@@ -7,13 +7,13 @@ ruby '3.2.0'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'bootsnap', require: false
-gem 'devise', '~> 4.9'
+gem 'devise'
 gem 'dotenv-rails'
 gem 'importmap-rails'
 gem 'jbuilder'
-gem 'puma', '~> 5.0'
-gem 'rails', '~> 7.0.8'
-gem 'rails-i18n', '~> 7.0.0'
+gem 'puma'
+gem 'rails'
+gem 'rails-i18n'
 gem 'sprockets-rails'
 gem 'stimulus-rails'
 gem 'turbo-rails'
