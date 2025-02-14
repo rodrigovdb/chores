@@ -1,19 +1,59 @@
 <h1><%= @kid.name %></h1>
 
-<div class="card">
-  <div class="card-body">
-    <%= turbo_frame_tag 'week' do %>
-      <%= render 'chores_table', week: @week, kid: @kid %>
-    <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= t('app.streak.title') %></h4>
+
+          <h5>
+            <%= @streak[:days] %>
+
+            <%= t('app.streak.days', count: @streak[:days]) %>
+          </h5>
+
+          <h5>
+            <%= @streak[:weeks_in_a_row] %>
+            <%= t('app.streak.weeks', count: @streak[:weeks_in_a_row]) %>
+          </h5>
+
+          <h5>
+            <%= t('app.streak.since') %>
+            <%= l(@streak[:first_day].to_date) %>
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= t('app.streak.next_payday') %></h4>
+
+          <h5><%= l(@week.next.begin) %></h5>
+          <h5><%= (12.34) %></h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"></h4>
+
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div class="kid-grid mt-5">
+<div class="mt-3">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title"><%= t('app.streak') %></h4>
-
-      <%= @streak.to_json %>
+      <%= turbo_frame_tag 'week' do %>
+        <%= render 'chores_table', week: @week, kid: @kid %>
+      <% end %>
     </div>
   </div>
 </div>

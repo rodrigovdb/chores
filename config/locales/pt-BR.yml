@@ -75,6 +75,10 @@ pt-BR:
     new: 'Cadastrar %{item}'
     save: 'Salvar'
     edit: 'Editar %{item}'
+    show: 'Visualizar'
+    more: 'Mais'
+    details: 'Mostrar mais'
+    go: 'Ir'
     confirm_delete: 'Tem certeza que deseja excluir este registro?'
     select: "Selecione"
     kids_chores_form_title: "Tarefas"
@@ -87,9 +91,15 @@ pt-BR:
       from: 'de'
       to: 'a'
     streak:
+      title: 'Sequência'
+      weeks:
+        one: 'semana'
+        other: 'semanas'
+      since: 'Desde'
       days:
         one: 'dia'
         other: 'dias'
+      next_payday: 'Próximo pagamento'
   dashboard:
     today_chores: "Tarefas de hoje"
   activerecord:

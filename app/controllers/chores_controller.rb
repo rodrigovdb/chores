@@ -21,7 +21,7 @@ class ChoresController < ApplicationController
 
   # POST /chores or /chores.json
   def create
-    @chore = Chore.new(chore_params)
+    @chore = Chore.new(chore_params.merge(user: current_user))
 
     respond_to do |format|
       if @chore.save
