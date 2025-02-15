@@ -3,15 +3,17 @@
 require 'rails_helper'
 
 RSpec.describe 'kids/edit' do
+  let(:user) { create(:user) }
   let(:kid) do
     Kid.create!(
-      user: nil,
+      user:,
       name: 'MyString'
     )
   end
 
   before do
     assign(:kid, kid)
+    assign(:chores, build_stubbed_list(:chore, 2, user:))
   end
 
   it 'renders the edit kid form' do

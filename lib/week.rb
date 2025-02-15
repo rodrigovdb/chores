@@ -39,7 +39,7 @@ class Week
   end
 
   def before_kid?
-    @before_kid ||= days.any?(&:before_kid?)
+    @before_kid ||= days.any?(&:before_kid?) || self.begin == kid.created_at
   end
 
   def include_kid?
@@ -80,7 +80,7 @@ class Week
     end
 
     def before_kid?
-      day < kid.created_at
+      day < kid.created_at.to_date
     end
 
     private

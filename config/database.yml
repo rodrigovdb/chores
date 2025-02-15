@@ -14,10 +14,9 @@ development:
   database  : <%= "#{Rails.application.credentials.database[:database]}_development" %>
 
 test:
-  <<: *default
-  # host      : 127.0.0.1
-  # port      : 5433
-  database  : <%= "#{Rails.application.credentials.database[:database]}_test" %>
+  adapter: sqlite3
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: storage/test.sqlite3
 
 production:
   <<: *default

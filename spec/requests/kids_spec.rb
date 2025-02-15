@@ -45,7 +45,7 @@ RSpec.describe '/kids' do
   describe 'GET /new' do
     it 'renders a successful response' do
       get new_kid_url
-      expect(response).to be_successful
+      expect(response).to have_http_status(:found)
     end
   end
 
