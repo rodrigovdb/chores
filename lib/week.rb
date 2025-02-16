@@ -50,6 +50,30 @@ class Week
     @satisfied ||= days.all?(&:satisfied?)
   end
 
+  # Reject today and all the days in the future.
+  # Also reject days before the kid creation.
+  def past_days
+    @past_days ||= days.select { |day| day.past? && !day.before_kid? }
+  end
+
+  def last_unsatisfied_day
+    @last_unsatisfied_day ||= past_days.reverse.find { |day| !day.satisfied? }
+  end
+
+  def first_satisfied_day
+    @first_satisfied_day ||= begin
+      if last_unsatisfied_day
+        past_days.select { _1.day > last_unsatisfied_day.day }.first
+      else
+        past_days.reverse.reduce(nil) { |res, day| day.satisfied? ? day : res }
+      end
+    end
+  end
+
+  def last_satisfied_day
+    @last_satisfied_day ||= past_days.reduce(nil) { |res, day| week_day.satisfied? ? day : res }
+  end
+
   private
 
   attr_reader :week, :kid

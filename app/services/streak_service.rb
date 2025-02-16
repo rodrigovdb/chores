@@ -22,6 +22,7 @@ class StreakService < ApplicationService
 
   def days
     response = (Date.current - first_day).to_i
+    response = 0 if response.negative?
 
     today.satisfied? ? response + 1 : response
   end
@@ -42,7 +43,11 @@ class StreakService < ApplicationService
     week ||= current_week
 
     if week.before_kid? || !week.satisfied? || week.previous.end < kid.created_at
-      return week.days.find { |week_day| !week_day.before_kid? && week_day.satisfied? }.day
+      satisfied = week.first_satisfied_day
+      unsatisfied = week.last_unsatisfied_day
+
+      return week.days.last.day if satisfied.nil?
+      return unsatisfied.nil? || satisfied.day > unsatisfied.day ? satisfied.day : week.days.last.day
     end
 
     @weeks += 1
