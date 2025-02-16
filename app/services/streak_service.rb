@@ -47,6 +47,7 @@ class StreakService < ApplicationService
       unsatisfied = week.last_unsatisfied_day
 
       return week.days.last.day if satisfied.nil?
+
       return unsatisfied.nil? || satisfied.day > unsatisfied.day ? satisfied.day : week.days.last.day
     end
 

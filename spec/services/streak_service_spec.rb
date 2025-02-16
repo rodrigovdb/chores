@@ -126,6 +126,5 @@ RSpec.describe StreakService do
         )
       end
     end
-
   end
 end
