@@ -5,8 +5,6 @@
   <%= l(@week.end) %>
 </h6>
 
-<%# Kid: <%= kid.to_json %1> %>
-<%# Satisfied: <%= week.satisfied? %1> %>
 <table class="chores-table" width=100%>
 <thead>
   <tr>
@@ -43,6 +41,39 @@
     </tr>
   <% end %>
 </tbody>
+
+<tfoot>
+  <tr>
+    <td>&nbsp;</td>
+    <% week.days.each do |day| %>
+      <td>
+        <%= number_to_currency(day.pay? ? 0.25 : 0) %>
+      </td>
+    <% end %>
+  </tr>
+
+  <% if week.fully_satisfied? %>
+    <tr>
+      <td colspan="7" class="text-end"><%= t('kids.chores.week_subtotal') %></td>
+      <td><%= number_to_currency(week.satisfied_days.count * 0.25) %></td>
+    </tr>
+
+    <tr>
+      <td colspan="7" class="text-end"><%= t('kids.chores.week_bonus') %></td>
+      <td><%= number_to_currency(0.25) %></td>
+    </tr>
+
+    <tr class="week-total">
+      <td colspan="7" class="text-end"><%= t('kids.chores.week_total') %></td>
+      <td><%= number_to_currency(2.00) %></td>
+    </tr>
+  <% else %>
+    <tr class="week-total">
+      <td colspan="7" class="text-end"><%= t('kids.chores.week_total') %></td>
+      <td><%= number_to_currency(week.days.select(&:satisfied?).count * 0.25) %></td>
+    </tr>
+  <% end %>
+</tfoot>
 </table>
 
 <div class="d-flex justify-content-end mt-3">
@@ -51,17 +82,21 @@
       <% previous_week = week.previous.begin %>
       <% next_week = week.next.begin %>
 
-      <% unless previous_week < kid.created_at %>
-        <li class="page-item">
+      <li class="page-item  <%= previous_week < kid.created_at ? 'disabled' : '' %>"">
+        <% if previous_week < kid.created_at %>
+          <button type="button" class="page-link" disabled><%= t('app.previous_week') %></button>
+        <% else %>
           <%= button_to t('app.previous_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (previous_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>
-        </li>
-      <% end %>
+        <% end %>
+      </li>
 
-      <% unless next_week.future? %>
-        <li class="page-item <%= next_week.future? ? 'disabled' : '' %>">
+      <li class="page-item <%= next_week.future? ? 'disabled' : '' %>">
+        <% if next_week.future? %>
+          <button type="button" class="page-link" disabled><%= t('app.next_week') %></button>
+        <% else %>
           <%= button_to t('app.next_week'), kid_daily_chores_path(@kid), method: :get, params: { date: (next_week).strftime('%Y-%m-%d')  }, class: 'page-link' %>
-        </li>
-      <% end %>
+        <% end %>
+      </li>
     </ul>
   </nav>
 </div>

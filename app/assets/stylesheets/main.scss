@@ -69,6 +69,12 @@ table.chores-table {
       padding: 10px;
     }
   }
+
+  tr.week-total {
+    td {
+      font-weight: bold;
+    }
+  }
 }
 
 footer {

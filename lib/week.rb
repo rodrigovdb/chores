@@ -30,6 +30,10 @@ class Week
     end
   end
 
+  def satisfied_days
+    @satisfied_days ||= days.reject(&:future?).select(&:satisfied?)
+  end
+
   def chores
     @chores ||= kid.chores
   end
@@ -48,6 +52,10 @@ class Week
 
   def satisfied?
     @satisfied ||= days.all?(&:satisfied?)
+  end
+
+  def fully_satisfied?
+    @fully_satisfied ||= satisfied_days.count == 7
   end
 
   # Reject today and all the days in the future.
@@ -92,6 +100,10 @@ class Week
       @day = day
       @chores = chores
       @daily_chores = daily_chores
+    end
+
+    def pay?
+      @pay ||= satisfied? && !future?
     end
 
     def satisfied?

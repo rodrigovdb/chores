@@ -102,6 +102,11 @@ pt-BR:
       next_payday: 'Próximo pagamento'
   dashboard:
     today_chores: "Tarefas de hoje"
+  kids:
+    chores:
+      week_subtotal: 'Subtotal'
+      week_bonus: 'Bônus da semana'
+      week_total: 'Total da semana'
   activerecord:
     models:
       chore:
